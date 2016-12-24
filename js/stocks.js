@@ -9,6 +9,8 @@ $(document).ready(function () {
         console.log(name);
         $.ajax({
             type: 'GET'
+            , dataType: 'JSON'
+            , crossDomain: true
             , url: "https://finance.google.com/finance/info?client=ig&q=NSE:" + name
             , success: function (response) {
                 response = response.substring(6, response.length);

@@ -48,6 +48,7 @@ $(document).ready(function () {
 });
 
 function load(response) {
+    console.log(response);
     $('#weather').html(response.forecast.simpleforecast.forecastday[0].conditions);
     $('#day').html("Today is " + response.forecast.simpleforecast.forecastday[0].date.weekday + ", " +
         response.forecast.simpleforecast.forecastday[0].date.monthname + " " + response.forecast.simpleforecast.forecastday[0].date.day + ", " +

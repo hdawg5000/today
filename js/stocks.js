@@ -62,6 +62,7 @@ function refreshStockPrices() {
         $.ajax({
             type: 'GET'
             , dataType: 'JSON'
+            , crossDomain: true
             , url: "http://dev.markitondemand.com/MODApis/Api/v2/Quote/json?symbol=" + name
             , success: function (response, name) {
                 loadStocks(response, name);

@@ -16,13 +16,7 @@ $(document).ready(function () {
                 response = JSON.parse(response);
                 loadStocks(response);
             }
-            , error: function (xhr, textStatus, errorMessage) {
-                //                console.log(xhr.status);
-                //                if (xhr.status === 200) {
-                //                    $.ajax(this);
-                //                    return;
-                //                }
-
+            , error: function () {
                 $('#stocks').append('<tr class="failed">Failed to retrieve stock data for ' + name + '</tr>');
             }
         });

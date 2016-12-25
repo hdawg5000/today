@@ -15,7 +15,6 @@
             <p id="day"></p>
             <p id="weather"></p>
             <p id="tomorrow"></p>
-            <input type="text">
             <button id="refresh">Refresh</button>
         </div>
     </div>
@@ -24,6 +23,14 @@
             <h2>Today's Stock Prices</h2>
             <span id="loading_icon_stocks"><img src="img/loading.gif"></span>
             <table id="stocks"></table>
+        </div>
+        <div id="submit_form">
+            <form id="add_stock">
+                <input type="text" id="symbol" placeholder="Add symbol" maxlength="5">
+                <input type="submit" id="sub_sym" value="Add" onclick="addStockName()">
+            </form>
+            </br>
+            <p class="error_msg">This symbol already exists!</p>
         </div>
     </div>
     <footer>t

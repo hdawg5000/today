@@ -2,19 +2,17 @@ var stocks = ["OPXA", "GSAT", "AAPL", "ZEN", "MSFT", "GOOG", "NFLX", "TSLA"];
 
 $(document).ready(function () {
     $('#stocks').hide();
+    $('#submit_form').hide();
     for (var i = 0; i < stocks.length; i++) {
         var name = stocks[i];
         JSON.stringify(name);
         name.replace(/"/g, '');
-        console.log(name);
+        //console.log(name);
         $.ajax({
             type: 'GET'
             , dataType: 'jsonp'
             , url: "https://finance.google.com/finance/info?client=ig&q=NSE:" + name
             , success: function (response) {
-                //                response = response.substring(6, response.length);
-                //                response = response.substring(0, response.length - 3);
-                //                response = JSON.parse(response);
                 loadStocks(response[0]);
             }
             , error: function () {
@@ -25,11 +23,15 @@ $(document).ready(function () {
     }
     $('#loading_icon_stocks').hide();
     $('#stocks').fadeIn(2000);
-    // Update stock prices every 7 seconds
+    $('#submit_form').delay(4000).show();
+
+    // Update stock prices every 5 seconds
     var d = new Date();
     if (d.getDay() < 6 && d.getHours >= 8) {
         setInterval(refreshStockPrices, 5000);
     }
+    //$('#submit_form').css('margin-top', 50 * stocks.length + 'px');
+    //$('#submit_form').css('margin-top', 50 + $('#submit_form'.css('margin-top')));
 });
 
 // Initial load of stocks data into table
@@ -58,9 +60,6 @@ function refreshStockPrices() {
             , dataType: 'jsonp'
             , url: "https://finance.google.com/finance/info?client=ig&q=NSE:" + name
             , success: function (response) {
-                //                response = response.substring(6, response.length);
-                //                response = response.substring(0, response.length - 3);
-                //                response = JSON.parse(response);
                 loadStocks(response[0]);
             }
             , error: function () {
@@ -74,32 +73,52 @@ function refreshStockPrices() {
 function addStockName() {
     var exists = false;
     var sym = document.getElementById("symbol").value;
-    if (sym !== null) {
-        sym = sym.toUpperCase();
-        console.log(sym);
-        $('#symbol').attr('disabled', 'disabled');
-        $('#sub_sym').attr('disabled', 'disabled');
+    sym = sym.toUpperCase();
+    if (!(sym === '')) {
+        //Check to see if sym is a valid symbol
+        //        console.log(validSymbol(sym));
+        if (validSymbol(sym) === true) {
+            console.log(sym);
+            $('#symbol').attr('disabled', 'disabled');
+            $('#sub_sym').attr('disabled', 'disabled');
 
-        for (var i = 0; i < stocks.length; i++) {
-            if (stocks[i] == sym) {
-                exists = true;
-                break;
+            for (var i = 0; i < stocks.length; i++) {
+                if (stocks[i] == sym) {
+                    exists = true;
+                    break;
+                }
             }
-        }
 
-        if (!exists) {
-            //check if symbol is valid symbol
-            var valid = false;
-
-            stocks[stocks.length] = sym;
-            refreshStockPrices();
-            document.getElementById("symbol").value = '';
+            if (!exists) {
+                stocks[stocks.length] = sym;
+                refreshStockPrices();
+                document.getElementById("symbol").value = '';
+            } else {
+                //highlight existing table row
+                document.getElementById("symbol").value = '';
+                $('.error_msg').html("'" + sym + "' is already on the list!").show().delay(2000).fadeOut(1000);
+            }
         } else {
-            //highlight existing table row
+            $('.error_msg').html("'" + sym + "' is not a valid symbol!").show().delay(3000).fadeOut(1000);
             document.getElementById("symbol").value = '';
-            $('.error_msg').show().delay(5000).fadeOut(1000);
         }
         $('#symbol').removeAttr('disabled');
         $('#sub_sym').removeAttr('disabled');
     }
 };
+
+function validSymbol(sym) {
+    var valid = null;
+    $.ajax({
+        type: 'get'
+        , dataType: 'jsonp'
+        , url: "https://finance.google.com/finance/info?client=ig&q=NSE:" + sym
+        , success: function () {
+            return true;
+        }
+        , error: function () {
+            valid = false;
+        }
+    });
+    return valid;
+}

@@ -15,7 +15,14 @@
             <p id="date"></p>
             <p><span id="current_temperature"></span><span id="current_weather"></span></p>
             <span id="weather_img"></span>
-            <p id="tomorrow"></p>
+
+            <span id="weather_img_tomorrow"></span><span class="desc"><span id="tomorrow_day"></span>
+            <span id="tomorrow_weather"></span><span id="tomorrow_temperature_high"></span><span id="tomorrow_temperature_low"></span></span>
+            </br>
+
+            <span id="day_after_tomorrow_weather_img"></span><span class="desc"><span id="day_after_tomorrow_day"></span>
+            <span id="day_after_tomorrow_weather"></span><span id="day_after_tomorrow_temperature_high"></span><span id="day_after_tomorrow_temperature_low"></span></span>
+
             <button id="refresh">Refresh</button>
         </div>
     </div>
@@ -27,14 +34,14 @@
         </div>
         <div id="submit_form">
             <form id="add_stock">
-                <input type="text" id="symbol" placeholder="Add symbol" maxlength="5">
+                <input type="text" id="symbol" placeholder="Add symbol" maxlength="5" autocomplete="off">
                 <input type="submit" id="sub_sym" value="Add" onclick="addStockName(); return false;">
             </form>
             </br>
             <p class="error_msg">This symbol already exists!</p>
         </div>
     </div>
-    <footer>t
+    <footer>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="js/weather.js" type="text/javascript"></script>
         <script src="js/stocks.js" type="text/javascript"></script>

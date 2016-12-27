@@ -7,10 +7,10 @@ $(document).ready(function () {
         var name = stocks[i];
         JSON.stringify(name);
         name.replace(/"/g, '');
-        //console.log(name);
+
         $.ajax({
             type: 'GET'
-            , dataType: 'jsonp'
+            , dataType: 'JSONP'
             , url: "https://finance.google.com/finance/info?client=ig&q=NSE:" + name
             , success: function (response) {
                 loadStocks(response[0]);
@@ -30,12 +30,13 @@ $(document).ready(function () {
     if (d.getDay() < 6 && d.getHours >= 8) {
         setInterval(refreshStockPrices, 5000);
     }
+
     //$('#submit_form').css('margin-top', 50 * stocks.length + 'px');
     //$('#submit_form').css('margin-top', 50 + $('#submit_form'.css('margin-top')));
 });
 
 // Initial load of stocks data into table
-function loadStocks(response, name) {
+function loadStocks(response) {
     if (response.t == null) {
         $('#stocks').append('<tr class="failed">Failed to retrieve stock data for ' + name + '</tr>');
     } else {
@@ -57,7 +58,7 @@ function refreshStockPrices() {
         console.log(name);
         $.ajax({
             type: 'GET'
-            , dataType: 'jsonp'
+            , dataType: 'JSONP'
             , url: "https://finance.google.com/finance/info?client=ig&q=NSE:" + name
             , success: function (response) {
                 loadStocks(response[0]);
@@ -72,53 +73,36 @@ function refreshStockPrices() {
 // Add stock names to stocks array
 function addStockName() {
     var exists = false;
-    var sym = document.getElementById("symbol").value;
-    sym = sym.toUpperCase();
+    var sym = document.getElementById("symbol").value.toUpperCase();
+
     if (!(sym === '')) {
         //Check to see if sym is a valid symbol
-        //        console.log(validSymbol(sym));
-        if (validSymbol(sym) === true) {
-            console.log(sym);
-            $('#symbol').attr('disabled', 'disabled');
-            $('#sub_sym').attr('disabled', 'disabled');
+        loadStocks(response[0], sym);
+        $('#symbol').attr('disabled', 'disabled');
+        $('#sub_sym').attr('disabled', 'disabled');
 
-            for (var i = 0; i < stocks.length; i++) {
-                if (stocks[i] == sym) {
-                    exists = true;
-                    break;
-                }
+        for (var i = 0; i < stocks.length; i++) {
+            if (stocks[i] === sym) {
+                exists = true;
+                break;
             }
+        }
 
-            if (!exists) {
-                stocks[stocks.length] = sym;
-                refreshStockPrices();
-                document.getElementById("symbol").value = '';
-            } else {
-                //highlight existing table row
-                document.getElementById("symbol").value = '';
-                $('.error_msg').html("'" + sym + "' is already on the list!").show().delay(2000).fadeOut(1000);
-            }
-        } else {
-            $('.error_msg').html("'" + sym + "' is not a valid symbol!").show().delay(3000).fadeOut(1000);
+        if (!exists) {
+            stocks[stocks.length] = sym;
             document.getElementById("symbol").value = '';
+        } else {
+            //highlight existing table row
+            document.getElementById("symbol").value = '';
+            $('.error_msg').html("'" + sym + "' is already on the list!").show().delay(2000).fadeOut(1000);
         }
-        $('#symbol').removeAttr('disabled');
-        $('#sub_sym').removeAttr('disabled');
+    } else {
+        console.log("Value is" + valid);
+        $('.error_msg').html("'" + sym + "' is not a valid symbol!").show().delay(1000).fadeOut(1000);
     }
-};
-
-function validSymbol(sym) {
-    var valid = null;
-    $.ajax({
-        type: 'get'
-        , dataType: 'jsonp'
-        , url: "https://finance.google.com/finance/info?client=ig&q=NSE:" + sym
-        , success: function () {
-            return true;
-        }
-        , error: function () {
-            valid = false;
-        }
-    });
-    return valid;
+    $('#symbol').removeAttr('disabled');
+    $('#sub_sym').removeAttr('disabled');
 }
+//else {
+//        $('.error_msg').html("Please type a symbol").show().delay(1000).fadeOut(1000);
+//    }

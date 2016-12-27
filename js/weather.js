@@ -24,7 +24,7 @@ $(document).ready(function () {
     var a2 = $.ajax({
         type: 'GET'
         , dataType: 'JSONP'
-        , url: "http://api.wunderground.com/api/0d0d35fa410cfe29/conditions/q/WI/Madison.json"
+        , url: "https://api.wunderground.com/api/0d0d35fa410cfe29/conditions/q/WI/Madison.json"
     });
 
     $.when(a1, a2).done(function (r1, r2) {

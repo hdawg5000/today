@@ -77,32 +77,61 @@ function addStockName() {
 
     if (!(sym === '')) {
         //Check to see if sym is a valid symbol
-        loadStocks(response[0], sym);
-        $('#symbol').attr('disabled', 'disabled');
-        $('#sub_sym').attr('disabled', 'disabled');
-
-        for (var i = 0; i < stocks.length; i++) {
-            if (stocks[i] === sym) {
-                exists = true;
-                break;
-            }
-        }
-
-        if (!exists) {
-            stocks[stocks.length] = sym;
-            document.getElementById("symbol").value = '';
-        } else {
-            //highlight existing table row
-            document.getElementById("symbol").value = '';
-            $('.error_msg').html("'" + sym + "' is already on the list!").show().delay(2000).fadeOut(1000);
-        }
+        var valid = null;
+        validateSymbol(sym, valid, function (isValid) {
+            console.log("I waited");
+            valid = isValid;
+            console.log(isValid);
+        });
     } else {
-        console.log("Value is" + valid);
-        $('.error_msg').html("'" + sym + "' is not a valid symbol!").show().delay(1000).fadeOut(1000);
+        $('.error_msg').html("Please type a symbol").show().delay(1000).fadeOut(1000);
     }
+    //     else {
+    //        console.log("Value is" + valid);
+    //        $('.error_msg').html("'" + sym + "' is not a valid symbol!").show().delay(1000).fadeOut(1000);
+    //    }
     $('#symbol').removeAttr('disabled');
     $('#sub_sym').removeAttr('disabled');
 }
-//else {
-//        $('.error_msg').html("Please type a symbol").show().delay(1000).fadeOut(1000);
-//    }
+
+function validateSymbol(sym, valid, callBack) {
+    $.ajax({
+        type: 'GET'
+        , dataType: 'JSONP'
+        , url: "https://finance.google.com/finance/info?client=ig&q=NSE:" + sym
+        , success: function (response) {
+            //loadStocks(response[0], sym);
+            $('#symbol').attr('disabled', 'disabled');
+            $('#sub_sym').attr('disabled', 'disabled');
+
+            //Check to see if sym is already in the stocks array
+            var exists = false;
+            for (var i = 0; i < stocks.length; i++) {
+                if (stocks[i] === sym) {
+                    exists = true;
+                    break;
+                }
+            }
+
+            //If sym doesn't exist in the stocks array, add it to the stocks array
+            if (!exists) {
+                stocks[stocks.length] = sym;
+                loadStocks(response[0]);
+                document.getElementById("symbol").value = '';
+            } else { //Otherwise it exists in the list and user is notified
+                //highlight existing table row
+                document.getElementById("symbol").value = '';
+                $('.error_msg').html("'" + sym + "' is already on the list!").show().delay(2000).fadeOut(1000);
+            }
+            //Reactivate input text and submit button
+            $('#symbol').removeAttr('disabled');
+            $('#sub_sym').removeAttr('disabled');
+        }
+        , error: function () {
+            //This funciton will notify the user that the inputted sym is not valid
+            console.log("Value is " + valid);
+            $('.error_msg').html("'" + sym + "' is not a valid symbol!").show().delay(1000).fadeOut(1000);
+
+        }
+    });
+}

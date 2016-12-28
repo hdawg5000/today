@@ -116,7 +116,19 @@ function validateSymbol(sym, valid, callBack) {
             //If sym doesn't exist in the stocks array, add it to the stocks array
             if (!exists) {
                 stocks[stocks.length] = sym;
+
+                //Run loadStocks function to add new stock to stocks list
                 loadStocks(response[0]);
+
+                //Update CSS for the dashboard to increase height by 50px
+                var val = $('.dashboard_stocks').css("height");
+                val = val.substring(0, val.length - 2);
+                valInt = parseInt(val);
+                valInt += 50;
+                val = valInt.toString();
+                $('.dashboard_stocks').css("height", val + "px");
+
+                //Clear input text box
                 document.getElementById("symbol").value = '';
             } else { //Otherwise it exists in the list and user is notified
                 //highlight existing table row

@@ -25,11 +25,11 @@ $(document).ready(function () {
     $('#stocks').fadeIn(2000);
     $('#submit_form').delay(4000).show();
 
-    // Update stock prices every 5 seconds
-    var d = new Date();
-    if (d.getDay() < 6 && d.getHours >= 8) {
-        setInterval(refreshStockPrices, 5000);
-    }
+    // Update stock prices every 10 seconds
+    //    var d = new Date();
+    //    if (d.getDay() < 6 && d.getHours >= 8) {
+    // setInterval(refreshStockPrices, 30000);
+    //    }
 
     //$('#submit_form').css('margin-top', 50 * stocks.length + 'px');
     //$('#submit_form').css('margin-top', 50 + $('#submit_form'.css('margin-top')));
@@ -55,7 +55,6 @@ function refreshStockPrices() {
         var name = stocks[i];
         JSON.stringify(name);
         name.replace(/"/g, '');
-        console.log(name);
         $.ajax({
             type: 'GET'
             , dataType: 'JSONP'

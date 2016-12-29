@@ -68,17 +68,17 @@ function load(response) {
     $('#date').fadeIn(3000);
 
     //Load tomorrow's weather
-    $('#tomorrow_day').html(response.forecast.simpleforecast.forecastday[1].date.weekday_short);
-    $('#tomorrow_temperature_high').html(" H:" + response.forecast.simpleforecast.forecastday[1].high.fahrenheit);
-    $('#tomorrow_temperature_low').html(" L:" + response.forecast.simpleforecast.forecastday[1].low.fahrenheit);
-    $('#tomorrow_weather').html(response.forecast.simpleforecast.forecastday[1].conditions);
+    $('#tomorrow_day').html(response.forecast.simpleforecast.forecastday[1].date.weekday_short + " | ");
+    $('#tomorrow_temperature_high').html(" H:" + response.forecast.simpleforecast.forecastday[1].high.fahrenheit + "&deg;");
+    $('#tomorrow_temperature_low').html(" L:" + response.forecast.simpleforecast.forecastday[1].low.fahrenheit + "&deg;");
+    $('#tomorrow_weather').html(response.forecast.simpleforecast.forecastday[1].conditions + " | ");
     $('#weather_img_tomorrow').html('<img src="' + response.forecast.simpleforecast.forecastday[1].icon_url + '"/>');
 
     //Load day after tomorrow's weather
-    $('#day_after_tomorrow_day').html(response.forecast.simpleforecast.forecastday[2].date.weekday_short);
-    $('#day_after_tomorrow_temperature_high').html(" H:" + response.forecast.simpleforecast.forecastday[2].high.fahrenheit);
-    $('#day_after_tomorrow_temperature_low').html(" L:" + response.forecast.simpleforecast.forecastday[2].low.fahrenheit);
-    $('#day_after_tomorrow_weather').html(response.forecast.simpleforecast.forecastday[2].conditions);
+    $('#day_after_tomorrow_day').html(response.forecast.simpleforecast.forecastday[2].date.weekday_short + " | ");
+    $('#day_after_tomorrow_temperature_high').html(" H:" + response.forecast.simpleforecast.forecastday[2].high.fahrenheit + "&deg;");
+    $('#day_after_tomorrow_temperature_low').html(" L:" + response.forecast.simpleforecast.forecastday[2].low.fahrenheit + "&deg;");
+    $('#day_after_tomorrow_weather').html(response.forecast.simpleforecast.forecastday[2].conditions + " | ");
     $('#day_after_tomorrow_weather_img').html('<img src="' + response.forecast.simpleforecast.forecastday[2].icon_url + '"/>');
 
 

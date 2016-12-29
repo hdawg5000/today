@@ -78,7 +78,7 @@ body {
 }
 
 #add_stock input[type=text]:focus {
-    outline-color: orange;
+    outline-color: #FFA500;
 }
 
 #add_stock input[type=submit] {
@@ -91,7 +91,7 @@ body {
     float: left;
     margin-left: 30px;
     cursor: pointer;
-    background-color: orange;
+    background-color: #FFA500;
 }
 
 .error_msg {

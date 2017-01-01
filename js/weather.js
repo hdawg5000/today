@@ -11,6 +11,7 @@ $(document).ready(function () {
         $('#greeting').html("Good evening, Hammad");
     }
 
+    
     $('#weather').hide();
     $('#day').hide();
     $('#refresh').hide();

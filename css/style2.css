@@ -7,10 +7,12 @@
 body {
     font-family: 'San Francisco';
     background-color: #3299ff;
+    min-width: 746px;
 }
 
 .dashboard,
-.dashboard_stocks {
+.dashboard_stocks,
+.dashboard_prayer_times {
     text-align: center;
     font-size: 25px;
     background-color: white;
@@ -18,12 +20,16 @@ body {
     border-radius: 20px;
     width: 645px;
     height: 472px;
-    margin: auto;
+    margin: 0 auto;
     margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    float: left;
 }
 
 .dashboard_stocks {
     height: 650px;
+    float: right;
 }
 
 .content {
@@ -119,4 +125,14 @@ body {
 #weather_img > img {
     width: 150px;
     height: auto;
+}
+
+#pt_table tr {
+    height: 50px;
+}
+
+#pt_table > tr > td {
+    width: 120px;
+    padding-left: 30px;
+    text-align: left;
 }

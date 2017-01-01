@@ -33,6 +33,10 @@ body {
     float: left;
 }
 
+.dashboard {
+    height: 550px;
+}
+
 .dashboard_stocks {
     height: 650px;
     float: right;

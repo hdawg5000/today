@@ -11,7 +11,7 @@ $(document).ready(function () {
         $('#greeting').html("Good evening, Hammad");
     }
 
-    
+
     $('#weather').hide();
     $('#day').hide();
     $('#refresh').hide();
@@ -81,6 +81,13 @@ function load(response) {
     $('#day_after_tomorrow_temperature_low').html(" L:" + response.forecast.simpleforecast.forecastday[2].low.fahrenheit + "&deg;");
     $('#day_after_tomorrow_weather').html(response.forecast.simpleforecast.forecastday[2].conditions + " | ");
     $('#day_after_tomorrow_weather_img').html('<img src="' + response.forecast.simpleforecast.forecastday[2].icon_url + '"/>');
+
+    //Load 3rd day weather
+    $('#third_day').html(response.forecast.simpleforecast.forecastday[3].date.weekday_short + " | ");
+    $('#third_day_temperature_high').html(" H:" + response.forecast.simpleforecast.forecastday[3].high.fahrenheit + "&deg;");
+    $('#third_day_temperature_low').html(" L:" + response.forecast.simpleforecast.forecastday[3].low.fahrenheit + "&deg;");
+    $('#third_day_weather').html(response.forecast.simpleforecast.forecastday[3].conditions + " | ");
+    $('#third_day_weather_img').html('<img src="' + response.forecast.simpleforecast.forecastday[3].icon_url + '"/>');
 
 
     //$('#tomorrow').html(response.forecast.simpleforecast.forecastday[1].date.weekday_short + ' ' + response.forecast.simpleforecast.forecastday[1].conditions);

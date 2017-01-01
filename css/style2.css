@@ -14,6 +14,36 @@ body {
     text-align: center;
 }
 
+
+/* Navigation */
+
+nav {
+    margin: auto;
+    margin-top: 70px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    width: 600px;
+    padding: 5px;
+}
+
+#nav > li {
+    list-style-type: none;
+    display: inline;
+    margin: 10px;
+    padding: 10px;
+    font-size: 25px;
+    cursor: pointer;
+    float: center;
+}
+
+#nav li:hover {
+    background-color: rgba(255, 165, 0, 0.7);
+}
+
+.active_nav {
+    border-bottom: 5px solid #FFA500;
+}
+
 .dashboard,
 .dashboard_stocks,
 .dashboard_prayer_times {
@@ -40,6 +70,10 @@ body {
 .dashboard_stocks {
     height: 650px;
     float: right;
+}
+
+.hide {
+    display: none;
 }
 
 .content {

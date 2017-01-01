@@ -10,6 +10,10 @@ body {
     min-width: 746px;
 }
 
+.container {
+    text-align: center;
+}
+
 .dashboard,
 .dashboard_stocks,
 .dashboard_prayer_times {
@@ -22,8 +26,10 @@ body {
     height: 472px;
     margin: 0 auto;
     margin-top: 50px;
+    margin-bottom: 50px;
     margin-left: 50px;
     margin-right: 50px;
+    display: inline-block;
     float: left;
 }
 
@@ -48,6 +54,9 @@ body {
     cursor: pointer;
     border-radius: 10px;
 }
+
+
+/* Stocks */
 
 #stocks tr {
     height: 50px;
@@ -116,6 +125,9 @@ body {
     margin: auto;
 }
 
+
+/* Weather */
+
 .desc {
     position: relative;
     bottom: 13px;
@@ -127,6 +139,13 @@ body {
     height: auto;
 }
 
+
+/* Prayer Times */
+
+#pt_table {
+    margin: auto;
+}
+
 #pt_table tr {
     height: 50px;
 }
@@ -135,4 +154,13 @@ body {
     width: 120px;
     padding-left: 30px;
     text-align: left;
+}
+
+@media (max-width: 1505px) {
+    .dashboard,
+    .dashboard_stocks,
+    .dashboard_prayer_times {
+        display: inline-block;
+        float: none;
+    }
 }

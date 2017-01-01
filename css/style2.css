@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'San Francisco';
+    font-family: 'San Francisco', sans-serif;
     background-color: #3299ff;
     min-width: 746px;
 }
@@ -110,11 +110,11 @@ nav {
     color: red;
 }
 
-#positive {
+.positive {
     color: green;
 }
 
-#negative {
+.negative {
     color: red;
 }
 
@@ -193,6 +193,11 @@ nav {
     width: 120px;
     padding-left: 30px;
     text-align: left;
+}
+
+.currentPrayer {
+    color: green;
+    font-weight: bolder;
 }
 
 @media (max-width: 1505px) {

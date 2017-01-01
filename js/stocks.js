@@ -41,9 +41,9 @@ function loadStocks(response) {
         $('#stocks').append('<tr class="failed">Failed to retrieve stock data for ' + name + '</tr>');
     } else {
         if (response.c > 0) {
-            $('#stocks').append('<tr><td>' + response.t + '</td><td id="positive">$' + response.l_cur + '</td><td id="positive"><i class="fa fa-caret-up" aria-hidden="true"></i>' + response.c.substring(1, response.c.length) + '</td></tr>');
+            $('#stocks').append('<tr><td>' + response.t + '</td><td class="positive">$' + response.l_cur + '</td><td class="positive"><i class="fa fa-caret-up" aria-hidden="true"></i>' + response.c.substring(1, response.c.length) + '</td></tr>');
         } else if (response.c < 0) {
-            $('#stocks').append('<tr><td>' + response.t + '</td><td id="negative">$' + response.l_cur + '</td><td id="negative"><i class="fa fa-caret-down" aria-hidden="true"></i>' + response.c.substring(1, response.c.length) + '</td></tr>');
+            $('#stocks').append('<tr><td>' + response.t + '</td><td class="negative">$' + response.l_cur + '</td><td class="negative"><i class="fa fa-caret-down" aria-hidden="true"></i>' + response.c.substring(1, response.c.length) + '</td></tr>');
         }
     }
 }

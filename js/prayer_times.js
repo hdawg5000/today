@@ -11,6 +11,10 @@ $(document).ready(function () {
             //Hide spinner
             $('#loading_icon_pt').hide();
 
+            //Load current time and call updateTime method every second
+            updateTime();
+            setInterval(updateTime, 1000);
+
             //Fill in table with timings
             $table.append("<tr id='fajr'><td>" + keys[0] + "</td><td>" + moment(response.data.timings.Fajr, "HH:mm").format("h:mma") + "</td></tr>");
             $table.append("<tr id='sunrise'><td>" + keys[1] + "</td><td>" + moment(response.data.timings.Sunrise, "HH:mm").format("h:mma") + "</td></tr>");
@@ -67,7 +71,11 @@ $(document).ready(function () {
             //Hide spinner
             //$('#loading_icon_pt').hide();
 
-            $('#pt_table').append("<tr>Something went wrong loading data. Please try refreshing the page.</tr>");
+            $('#pt_table').append("<tr>Something went wrong loading the data. Please try refreshing the page.</tr>");
         }
     });
 });
+
+function updateTime() {
+    $('#current_time').html(moment().format("h:mm:ssa") + " CST");
+}

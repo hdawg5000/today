@@ -21,8 +21,7 @@ $(document).ready(function () {
             $table.append("<tr id='isha'><td>" + keys[6] + "</td><td>" + moment(response.data.timings.Isha, "HH:mm").format("h:mma") + "</td></tr>");
 
             //Create new date object to compare current time with next prayer time
-            var d = new Date();
-            var currentTime = d.getHours() + ":" + d.getMinutes();
+            var currentTime = moment().hour() + ":" + moment().minute();
 
             //Find current prayer and add currentPlayer class to table row to highlight green, signifying current prayer
             if (currentTime.substring(0, 2) <= parseInt(response.data.timings.Sunrise.substring(0, 2)) &&
@@ -48,18 +47,20 @@ $(document).ready(function () {
                 } else {
                     $('#maghrib').addClass('currentPrayer');
                 }
-            } else if (currentTime.substring(0, 2) >= parseInt(response.data.timings.Maghrib.substring(0, 2))) {
+            } else if (currentTime.substring(0, 2) <= parseInt(response.data.timings.Maghrib.substring(0, 2))) {
                 if (currentTime.substring(3, 5) < parseInt(response.data.timings.Maghrib.substring(3, 5))) {
                     $('#asr').addClass('currentPrayer');
                 } else {
                     $('#maghrib').addClass('currentPrayer');
                 }
-            } else if (currentTime.substring(3, 5) < parseInt(response.data.timings.Isha.substring(3, 5))) {
+            } else if (currentTime.substring(0, 2) <= parseInt(response.data.timings.Isha.substring(0, 2))) {
                 if (currentTime.substring(3, 5) < parseInt(response.data.timings.Isha.substring(3, 5))) {
                     $('#maghrib').addClass('currentPrayer');
                 } else {
                     $('#isha').addClass('currentPrayer');
                 }
+            } else {
+                $('#isha').addClass('currentPrayer');
             }
         }
         , error: function () {

@@ -40,7 +40,11 @@ $(document).ready(function () {
                     if (currentTime.substring(3, 5) < parseInt(response.data.timings[keys[count]].substring(3, 5))) {
                         $('#' + keys[count - 1].toLowerCase()).addClass('currentPrayer');
                     } else {
-                        $('#' + keys[count].toLowerCase()).addClass('currentPrayer');
+                        if (keys[count] === "Sunrise" || keys[count] === "Sunset") {
+                            $('#' + keys[count + 1].toLowerCase()).addClass('currentPrayer');
+                        } else {
+                            $('#' + keys[count].toLowerCase()).addClass('currentPrayer');
+                        }
                     }
                     break;
                 }

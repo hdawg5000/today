@@ -195,9 +195,21 @@ nav {
     text-align: left;
 }
 
-.currentPrayer {
+.currentPrayer td {
     color: green;
     font-weight: bolder;
+}
+
+tr > td > i {
+    visibility: hidden;
+}
+
+.currentPrayer tr > td > i {
+    visibility: visible;
+}
+
+.currentPrayer i {
+    display: initial;
 }
 
 @media (max-width: 1505px) {

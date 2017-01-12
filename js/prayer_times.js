@@ -19,11 +19,13 @@ $(document).ready(function () {
 
             //Fill in table with timings
             for (var i = 0; i < keys.length - 2; i++) {
-                $table.append("<tr id='" + keys[i].toLowerCase() + "'><td>" + keys[i] + "</td><td>" + moment(response.data.timings[keys[i]], "HH:mm").format("h:mma") + "</td></tr>");
+                $table.append("<tr id='" + keys[i].toLowerCase() + "'><td><i class='fa fa-caret-right' aria-hidden='true'></i>" + keys[i] + "</td><td>" + moment(response.data.timings[keys[i]], "HH:mm").format("h:mma") + "</td></tr>");
             }
 
             //Create new moment object to compare current time with next prayer time
             var currentTime = moment().format("HH:mm");
+            console.log(currentTime);
+            console.log(response.data.timings[keys[3]]);
 
             /*Find current prayer and add currentPlayer class to table row in order to highlight green,
             signifying current prayer */

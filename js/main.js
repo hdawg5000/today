@@ -24,24 +24,30 @@ $(document).ready(function () {
             if ($dash.hasClass("hide")) {
                 $dash.removeClass("hide");
             }
+            $dash.css("float", "none");
             $dash_stocks.addClass("hide");
             $dash_prayer_times.addClass("hide");
         } else if (this.classList.contains("st")) {
             if ($dash_stocks.hasClass("hide")) {
                 $dash_stocks.removeClass("hide");
             }
+            $dash_stocks.css("float", "none");
             $dash.addClass("hide");
             $dash_prayer_times.addClass("hide");
         } else if (this.classList.contains("prt")) {
             if ($dash_prayer_times.hasClass("hide")) {
                 $dash_prayer_times.removeClass("hide");
             }
+            $dash_prayer_times.css("float", "none");
             $dash.addClass("hide");
             $dash_stocks.addClass("hide");
         } else {
             $dash.removeClass("hide");
             $dash_stocks.removeClass("hide");
             $dash_prayer_times.removeClass("hide");
+            $dash.css("float", "left");
+            $dash_stocks.css("float", "right");
+            $dash_prayer_times.css("float", "left");
         }
     }
 });
